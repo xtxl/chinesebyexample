@@ -1,0 +1,118 @@
+html, body, .all-container, .all-row {
+	height: 100%;
+}
+
+body {
+}
+
+h1 {
+	text-align: center;
+	font-size: 40px;
+}
+
+#readme {
+	width: 66.67%; /* vocab takes 1/6, right padding takes 1/6, left with 2/3 ≈ 66.67% */
+	height: calc(100% - 16px);
+	transform: translate(0px, 12px);
+	overflow-y: auto;
+}
+
+blockquote {
+	line-height: 0.6;
+	margin-top: 16px;
+	margin-bottom: 8px;
+}
+
+#vocab {
+	height: 98%;
+	top: 1%;
+}
+
+#console {
+	margin-top: 4px;
+	width: 100%;
+}
+
+#vocab-container {
+	height: calc(100% - 38px); /* 30px for search box, 8 for top margin */
+	margin-top: 8px;
+	overflow-y: auto;
+}
+
+div.vocab-row {
+	padding: 4px;
+}
+
+.vocab-row:hover, .example:hover {
+	background-color: #EDEDED;
+}
+
+.selected {
+	background-color: #DDFFBB;
+}
+
+#examples {
+	height: 98%;
+	top: 1%;
+	overflow-y: auto;
+	display: none;
+}
+
+div.example {
+	padding: 8px 8px 1px 8px;
+}
+
+span.vocab-highlight {
+	color: 	#CD0000;
+}
+
+#media {
+	height: 100%;
+	display: none;
+}
+
+#centered-media {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#youtube1, #youtube2 {
+	width: 100%;
+	height: 28.125vw;
+	display: none;
+}
+
+#popup {
+	position: fixed;
+	padding: 4px;
+	max-width: 360px;
+	border: 1px solid black;
+	display: none;
+	background-color: white;
+}
+
+.popupChinese {
+	color: #00688B;
+}
+
+.popupPinyin {
+	color: #CD0000;
+}
+
+#snackbar {
+		visibility: hidden;
+		width: 40%;
+		margin-left: -20%;
+		left: 50%;
+		bottom: 30px;
+		background-color: black;
+		color: white;
+		text-align: center;
+		padding: 16px;
+		position: fixed;
+		font-size: 18px;
+}
+
+#snackbar.show {
+		visibility: visible;
+}
