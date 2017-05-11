@@ -1,12 +1,12 @@
 (function (global) {
 var popupDict = {};
-var popupEnabled = true;
+var popupEnabled = false;
 var selectEnabled = true;
 var popupDisplayed = false;
 
 var _popup = $("#popup");
 
-popupDict.mouseMoveHandler = function(e) {
+mouseMoveHandler = function(e) {
 	var entries = getVocab(e);
 	// no entries, remove popup
 	if (entries.length === 0) {
@@ -25,11 +25,11 @@ popupDict.mouseMoveHandler = function(e) {
 // toggle dictionary, then return true if it's enabled, false otherwise
 popupDict.toggleDict = function() {
 	if (popupEnabled) {
-		$(document).off("mousemove", $popupDict.mouseMoveHandler);
+		$(document).off("mousemove", mouseMoveHandler);
 		hidePopup();
 	}
 	else {
-		$(document).on("mousemove", $popupDict.mouseMoveHandler);
+		$(document).on("mousemove", mouseMoveHandler);
 	}
 	popupEnabled = !popupEnabled;
 	return popupEnabled;

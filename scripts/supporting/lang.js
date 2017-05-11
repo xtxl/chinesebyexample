@@ -35,15 +35,15 @@ function convertWithDict(dict, str) {
 	return result;
 }
 
-$.getJSON("../json/dict.json", function(data) {
+$.getJSON("json/dict.json", function(data) {
 	lang.dict = data;
 	addTraditionalKeys();
 });
-$.getJSON("../json/simplified-to-traditional.json", function(data) {
+$.getJSON("json/simplified-to-traditional.json", function(data) {
 	stDict = data;
 	addTraditionalKeys();
 });
-$.getJSON("../json/traditional-to-simplified.json", function(data) {
+$.getJSON("json/traditional-to-simplified.json", function(data) {
 	tsDict = data;
 });
 

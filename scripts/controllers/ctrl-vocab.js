@@ -17,12 +17,13 @@ var selectedVocab;
 function loadVocab() {
 	if (!currentVocab) { return; }
 	$.get(VOCAB_URL, function(vocabHtml) {
-		var reselect = -1; // if the vocab section is reloaded, the selected vocab must be reselected
+		var selectedChinese = selectedVocab ? selectedVocab.attr("entry") : null;
+		var reselect = -1;
 		var finalHtml = '';
 		for (var i = 0; i < currentVocab.length; i++) {
 			var number = i + 1 + vocabOffset;
 			var chinese = $lang.chineseWrapper(currentVocab[i].chinese);
-			if (selectedVocab && selectedVocab.attr("entry") === chinese) {
+			if (selectedChinese && selectedChinese === chinese) {
 				reselect = i+1;
 			}
 			var mapping = {"{{number}}": number, "{{chinese}}": chinese};
@@ -30,8 +31,8 @@ function loadVocab() {
 		}
 		_vocabContainer.html(finalHtml);
 		_vocabContainer.scrollTop(0);
-		if (reselect >= 0) {
-			ctrlVocab.selectVocab($("#vocab-container div:nth-child(" + reselect + ")"));
+		if (reselect != -1) {
+			selectVocab($("#vocab-container div:nth-child(" + reselect + ")"));
 		}
 	});
 }
@@ -39,8 +40,8 @@ function loadVocab() {
 ctrlVocab.vocabClicked = function (e, number) {
 	if (e.altKey || e.target === selectedVocab) { return; }
 	selectVocab($(e.target));
-	$ctrl.leaveReadmeState();
-	$ctrl.loadExamples(currentVocab[number - vocabOffset - 1]);
+	$ctrlReadme.leaveReadmeState();
+	$ctrlExamples.loadExamples(currentVocab[number - vocabOffset - 1]);
 }
 
 selectVocab = function(selectedElement=null) {
@@ -62,6 +63,7 @@ ctrlVocab.setVocabRange = function(left, right=null) {
 	vocabOffset = Math.max(left-1, 0);
 	currentVocab = VOCAB.slice(vocabOffset, right);
 	loadVocab();
+	$utils.snackbarMessage("Range: " + left + "-" + right);
 }
 
 var randomizeVocab = false;
@@ -93,7 +95,7 @@ ctrlVocab.search = function(query) {
 }
 
 ctrlVocab.reset = function() {
-	ctrlVocab.selectVocab(null);
+	selectVocab(null);
 	currentVocab = VOCAB;
 	loadVocab();
 	_vocabContainer.scrollTop(0);

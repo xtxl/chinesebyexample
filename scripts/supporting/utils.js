@@ -18,5 +18,18 @@ utils.shuffle = function(list) {
 	return list;
 }
 
+var _snackbar = $("#snackbar");
+var snackCount = 0;
+
+utils.snackbarMessage = function(message) {
+	snackCount++;
+	if (!_snackbar.attr("class")) { _snackbar.toggleClass("show"); }
+	_snackbar.text(message);
+	setTimeout(function() {
+		snackCount--;
+		if (snackCount == 0) { _snackbar.toggleClass("show"); }
+	}, 3000);
+}
+
 global.$utils = utils;
 })(window);
