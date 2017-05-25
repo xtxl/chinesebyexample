@@ -70,7 +70,7 @@ function loadMediaForPlayer(playerIndex, example, paused=false) {
 
 	if (paused) {
 		players[playerIndex].player.pauseVideo();
-	}
+	} // request is playing, show it
 	else {
 		players[currentPlayer].element.css({"display": "block"});
 		players[1-currentPlayer].element.css({"display": "none"});
